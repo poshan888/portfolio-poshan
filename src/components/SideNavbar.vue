@@ -2,32 +2,27 @@
   <div>
     <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
     <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-      <h1 id="colorlib-logo">
-        <a href="index.html">{{ props.authorName }}</a>
+      <h1 id="colorlib-logo" @click="goToHome">
+        <span class="change-color">{{ props.authorName }}</span>
       </h1>
       <nav id="colorlib-main-menu" role="navigation">
         <ul>
-          <li :class="item.id == 1 ? 'colorlib-active' : ''" v-for="item in menu" :key="item.id">
-            <a :href="item.link">{{ item.menuName }}</a>
+          <li
+            v-bind:class="item.id == 1 ? 'colorlib-active' : ''"
+            v-for="item in menu"
+            :key="item.id"
+          >
+            <RouterLink :to="item.link">
+              <a>{{ item.menuName }}</a>
+            </RouterLink>
           </li>
         </ul>
       </nav>
 
       <div class="colorlib-footer">
-        <p>
-          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          Copyright &copy;
-          <!-- <script>
-            document.write(new Date().getFullYear())
-          </script> -->
-          All rights reserved | This template is made with
-          <i class="icon-heart" aria-hidden="true"></i> by
-          <a href="https://colorlib.com" target="_blank">Colorlib</a>
-        </p>
-
         <ul>
           <li v-for="icon in icons" :key="icon.id">
-            <a href="#"><i :class="'icon-${icon.icon}'"></i></a>
+            <a href="#"><i :class="'icon ' + 'icon-' + '${icon}'"></i></a>
           </li>
         </ul>
       </div>
@@ -37,6 +32,20 @@
 
 <script setup>
 import { ref, defineProps } from 'vue'
+import { onMounted, onUpdated, onUnmounted } from 'vue'
+import { RouterLink } from 'vue-router'
+
+onMounted(() => {
+  console.log('Component mounted')
+})
+
+onUpdated(() => {
+  console.log('Component updated')
+})
+
+onUnmounted(() => {
+  console.log('Component unmounted')
+})
 
 const props = defineProps({
   authorName: {
@@ -46,13 +55,19 @@ const props = defineProps({
 })
 
 const menu = ref([
-  { link: 'index.html', menuName: 'Home' },
-  { link: 'photography.html', menuName: 'Photography' },
-  { link: 'travel.html', menuName: 'Travel' },
-  { link: 'fashion.html', menuName: 'Fashion' },
-  { link: 'about.html', menuName: 'About' },
-  { link: 'contact.html', menuName: 'Contact' },
+  { link: '/', menuName: 'Home' },
+  { link: '/about', menuName: 'About' },
+  { link: '/contact', menuName: 'Contact' },
+  { link: '/photography', menuName: 'Photography' },
+  { link: '/fashion', menuName: 'Fashion' },
+  // { link: 'travel.html', menuName: 'Travel' },
 ])
 
 const icons = ref(['facebook', 'twitter', 'instagram', 'linkedin'])
+
+const goToHome = () => {
+  this.$router.push('/')
+}
 </script>
+
+<style scoped></style>

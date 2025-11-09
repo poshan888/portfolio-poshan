@@ -1,5 +1,38 @@
-<template>
-  <div></div>
-</template>
+<script setup>
+import { AUTHOR_FULL_NAME } from '@/constants/appConstants'
+</script>
 
-<script></script>
+<template>
+  <div
+    class="hero-wrap hero-wrap-2 js-fullheight"
+    style="background-image: url(./src/assets/images/bg_4.jpg)"
+    data-stellar-background-ratio="0.5"
+  >
+    <div class="overlay"></div>
+    <div class="js-fullheight d-flex justify-content-center align-items-center">
+      <div class="col-md-8 text text-center">
+        <div class="img mb-4" style="background-image: url(./src/assets/images/author.jpg)"></div>
+        <div class="desc">
+          <h2 class="subheading">Hello I'm</h2>
+          <h1 class="mb-4">{{ AUTHOR_FULL_NAME }}</h1>
+          <p class="mb-4">
+            I am A Blogger Far far away, behind the word mountains, far from the countries Vokalia
+            and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right
+            at the coast of the Semantics, a large language ocean.
+          </p>
+          <ul class="ftco-social mt-3">
+            <li class="ftco-animate">
+              <a href="#"><span class="icon-twitter"></span></a>
+            </li>
+            <li class="ftco-animate">
+              <a href="#"><span class="icon-facebook"></span></a>
+            </li>
+            <li class="ftco-animate">
+              <a href="#"><span class="icon-instagram"></span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
